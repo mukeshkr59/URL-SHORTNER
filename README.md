@@ -1,6 +1,6 @@
 # URL Shortener 🔗
 
-![URL Shortener Demo](https://i.imgur.com/JKQlQYh.png)
+![URL Shortener Demo]
 
 A full-stack URL shortening service built with Node.js, Express, MongoDB, and EJS templates.
 
