@@ -1,7 +1,7 @@
 // const sessionIdToUserMap = new Map(); // we are maintaining the state of the user
 
 const jwt = require("jsonwebtoken");
-const secret = "Mukesh@1234$asdf";
+const secret = "process.env.JWT_SECRET";
 
 // function setUser(id, user) {
 //   // return sessionIdToUserMap.set(id, user);
@@ -16,7 +16,7 @@ function setUser(user){
   return jwt.sign({
     _id : user.id,
     email : user.email
-  }, secret)
+  }, process.env.JWT_SECRET)
 }
 
 function getUser(token) {
