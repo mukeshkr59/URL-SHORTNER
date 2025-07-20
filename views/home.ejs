@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      table {
+        width: 100%;
+        align-content: center;
+        table-layout: fixed; /* Ensures fixed column widths */
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+        text-align: center ;
+
+        /* 💡 Fixes width and prevents content wrapping */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      /* Fixed-width column with scrollable overflow */
+      .scroll-cell {
+        width: 200px;
+      }
+
+      .scroll-content {
+        white-space: nowrap; /* Prevent wrapping */
+        overflow-x: auto; /* Enable horizontal scroll */
+        display: block; /* Required for scrolling */
+      }
+      .analytics{
+        text-align: center;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+  </head>
+  <body>
+    <h1>URL Shortner</h1>
+    <!--  -->
+    <div>
+      <form method="post" action="/url">
+        <label for="">Enter Your Url</label>
+        <input type="text" name="url" placeholder="https://example.com" />
+        <button type="submit">Generate</button>
+      </form>
+    </div>
+    <% if (locals.id) { %>
+    <p>URL Generated : http://localhost:8001/url/<%- id %></p>
+    <% } %>
+    <!-- <br /> -->
+    <div class="analytics"> <h2> History & Analytics </h2> </div>
+    <div>
+      <% if (locals.urls) { %>
+      <table border="1">
+        <thead>
+          <th>S.N.</th>
+          <th>ShortId</th>
+          <th>Redirect</th>
+          <th>No. of Clicks</th>
+        </thead>
+        <tbody>
+          <% urls.forEach((url, index) => { %>
+          <tr>
+            <td><%=index+1 %></td>
+            <td><%=url.shortId %></td>
+            <td class="scroll-cell">
+              <div class="scroll-content"><%=url.redirectURL %></div>
+            </td>
+            <td><%=url.visitHistory.length %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <% } %>
+    </div>
+  </body>
+</html>
